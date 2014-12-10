@@ -2,8 +2,7 @@ package com.ritsu.base.engine;
 
 public class MainComponent {
 
-	public static final int WIDTH = 800;
-	public static final int HEIGHT = 600;
+	public static final int WIDTH = 800, HEIGHT = 600;
 	public static final String TITLE = "3D Engine (TheBennyBox) v0.0.01a";
 	public static final double FRAME_CAP = 5000.0;
 
@@ -16,14 +15,12 @@ public class MainComponent {
 	}
 
 	public void start() {
-		if (running)
-			return;
+		if (running) return;
 		run();
 	}
 
 	public void stop() {
-		if (!running)
-			return;
+		if (!running) return;
 
 		running = false;
 	}
@@ -54,8 +51,7 @@ public class MainComponent {
 
 				unprocessedTime -= frameTime;
 
-				if (Window.isCloseRequested())
-					stop();
+				if (Window.isCloseRequested()) stop();
 
 				Time.setDelta(frameTime);
 				Input.update();

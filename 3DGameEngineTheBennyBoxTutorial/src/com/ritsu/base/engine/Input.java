@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
+import com.ritsu.base.engine.math.Vector2f;
+
 public class Input {
 
 	public static final int NUM_KEYCODES = 256;
