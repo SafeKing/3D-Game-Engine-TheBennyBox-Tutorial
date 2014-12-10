@@ -28,73 +28,62 @@ public class MainComponent {
 		running = false;
 	}
 
-	
+	private void run() {
+		running = true;
 
-	private void run()
-		{
-			running = true;
-			
-			int frames = 0;
-			long frameCounter = 0;
-			
-			final double frameTime = 1.0 / FRAME_CAP;
-			
-			long lastTime = Time.getTime();
-			double unprocessedTime = 0;
-			
-			while(running)
-			{
-				boolean render = false;
-				
-				long startTime = Time.getTime();
-				long passedTime = startTime - lastTime;
-				lastTime = startTime;
-				
-				unprocessedTime += passedTime / (double)Time.SECOND;
-				frameCounter += passedTime;
-				
-				while(unprocessedTime > frameTime)
-				{
-					render = true;
-					
-					unprocessedTime -= frameTime;
-					
-					if(Window.isCloseRequested())
-						stop();
-					
-					Time.setDelta(frameTime);
-					
-					game.input();
-					game.update();
-				
-					if(frameCounter >= Time.SECOND)
-					{
-						System.out.println(frames);
-						frames = 0;
-						frameCounter = 0;
-					}
-				}
-				if(render)
-				{
-					render();
-					frames++;
-				}
-				else
-				{
-					try 
-					{
-						Thread.sleep(1);
-					} 
-					catch (InterruptedException e) 
-					{
-						e.printStackTrace();
-					}
+		int frames = 0;
+		long frameCounter = 0;
+
+		final double frameTime = 1.0 / FRAME_CAP;
+
+		long lastTime = Time.getTime();
+		double unprocessedTime = 0;
+
+		while (running) {
+			boolean render = false;
+
+			long startTime = Time.getTime();
+			long passedTime = startTime - lastTime;
+			lastTime = startTime;
+
+			unprocessedTime += passedTime / (double) Time.SECOND;
+			frameCounter += passedTime;
+
+			while (unprocessedTime > frameTime) {
+				render = true;
+
+				unprocessedTime -= frameTime;
+
+				if (Window.isCloseRequested())
+					stop();
+
+				Time.setDelta(frameTime);
+				Input.update();
+
+				game.input();
+				game.update();
+
+				if (frameCounter >= Time.SECOND) {
+					System.out.println(frames);
+					frames = 0;
+					frameCounter = 0;
 				}
 			}
-			
-			cleanUp();
+			if (render) {
+				render();
+				frames++;
+			} else {
+				try {
+					Thread.sleep(1);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
 		}
-	
+
+		cleanUp();
+	}
+
 	private void render() {
 		Window.render();
 		game.render();
