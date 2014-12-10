@@ -1,4 +1,4 @@
-package com.ritsu.base.engine;
+package com.ritsu.base.engine.math;
 
 public class Time {
 

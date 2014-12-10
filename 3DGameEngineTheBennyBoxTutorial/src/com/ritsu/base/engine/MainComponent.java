@@ -1,5 +1,8 @@
 package com.ritsu.base.engine;
 
+import com.ritsu.base.engine.math.Time;
+import com.ritsu.base.engine.render.RenderUtil;
+
 public class MainComponent {
 
 	public static final int WIDTH = 800, HEIGHT = 600;
@@ -10,6 +13,7 @@ public class MainComponent {
 	private Game game;
 
 	public MainComponent() {
+		RenderUtil.initGraphics();
 		running = false;
 		game = new Game();
 	}
@@ -81,6 +85,7 @@ public class MainComponent {
 	}
 
 	private void render() {
+		RenderUtil.clearScreen();
 		Window.render();
 		game.render();
 	}
