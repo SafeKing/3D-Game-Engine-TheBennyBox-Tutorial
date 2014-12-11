@@ -3,6 +3,7 @@ package com.ritsu.base.engine;
 import org.lwjgl.input.Keyboard;
 
 import com.ritsu.base.engine.math.Time;
+import com.ritsu.base.engine.math.Transform;
 import com.ritsu.base.engine.math.Vector3f;
 import com.ritsu.base.engine.render.Mesh;
 import com.ritsu.base.engine.render.Vertex;
@@ -50,8 +51,11 @@ public class Game {
 	public void update() {
 		temp += Time.getDelta();
 
-		transform.setTranslation((float) Math.sin(temp), 0, 0);
-		transform.setRotation(0, 0, (float) Math.sin(temp) * 180);
+		float sinTemp = (float) Math.sin(temp);
+
+		transform.setTranslation(sinTemp, 0, 0);
+		transform.setRotation(0, 0, sinTemp * 180);
+		transform.setScale(sinTemp, sinTemp, sinTemp);
 	}
 
 	public void render() {
