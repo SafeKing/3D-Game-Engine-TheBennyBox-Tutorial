@@ -5,7 +5,7 @@ import com.ritsu.base.engine.render.RenderUtil;
 
 public class MainComponent {
 
-	public static final int WIDTH = 800, HEIGHT = 600;
+	public static final int WIDTH = 600, HEIGHT = 600;
 	public static final String TITLE = "3D Engine (TheBennyBox) v0.0.01a";
 	public static final double FRAME_CAP = 5000.0;
 
