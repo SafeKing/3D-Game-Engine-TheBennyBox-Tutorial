@@ -87,8 +87,8 @@ public class MainComponent {
 
 	private void render() {
 		RenderUtil.clearScreen();
-		Window.render();
 		game.render();
+		Window.render();
 	}
 
 	private void cleanUp() {
