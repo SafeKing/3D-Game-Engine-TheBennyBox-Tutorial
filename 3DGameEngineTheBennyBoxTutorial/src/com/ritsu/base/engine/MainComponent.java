@@ -13,6 +13,7 @@ public class MainComponent {
 	private Game game;
 
 	public MainComponent() {
+		System.out.println(RenderUtil.getOpenGLVersion());
 		RenderUtil.initGraphics();
 		running = false;
 		game = new Game();

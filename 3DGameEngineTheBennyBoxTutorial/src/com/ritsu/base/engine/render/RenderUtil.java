@@ -16,10 +16,12 @@ public class RenderUtil {
 		glCullFace(GL_BACK);
 		glEnable(GL_CULL_FACE);
 		glEnable(GL_DEPTH_TEST);
-		
-		
-		
+
 		glEnable(GL_FRAMEBUFFER_SRGB);
+	}
+
+	public static String getOpenGLVersion() {
+		return glGetString(GL_VERSION);
 	}
 
 }
