@@ -1,9 +1,10 @@
 package com.ritsu.base.engine.math;
 
-import com.ritsu.base.engine.math.Matrix4f;
-import com.ritsu.base.engine.math.Vector3f;
+import com.ritsu.base.engine.Camera;
 
 public class Transform {
+
+	private static Camera camera;
 
 	private static float zNear;
 	private static float zFar;
@@ -32,6 +33,7 @@ public class Transform {
 	public Matrix4f getProjectedTransformation() {
 		Matrix4f transformationMatrix = getTransformation();
 		Matrix4f projectionMatrix = new Matrix4f().initProjection(fov, width, height, zNear, zFar);
+		Matrix4f cameraMatrix = new Matrix4f();
 
 		return projectionMatrix.mul(transformationMatrix);
 	}
@@ -78,6 +80,14 @@ public class Transform {
 
 	public void setScale(float x, float y, float z) {
 		this.scale = new Vector3f(x, y, z);
+	}
+
+	public static Camera getCamera() {
+		return camera;
+	}
+
+	public static void setCamera(Camera camera) {
+		Transform.camera = camera;
 	}
 
 }
