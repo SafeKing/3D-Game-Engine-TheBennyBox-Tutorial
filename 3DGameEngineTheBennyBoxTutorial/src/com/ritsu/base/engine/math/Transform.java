@@ -5,6 +5,12 @@ import com.ritsu.base.engine.math.Vector3f;
 
 public class Transform {
 
+	private static float zNear;
+	private static float zFar;
+	private static float width;
+	private static float height;
+	private static float fov;
+
 	private Vector3f translation;
 	private Vector3f rotation;
 	private Vector3f scale;
@@ -23,8 +29,23 @@ public class Transform {
 		return translationMatrix.mul(rotationMatrix.mul(scaleMatrix));
 	}
 
+	public Matrix4f getProjectedTransformation() {
+		Matrix4f transformationMatrix = getTransformation();
+		Matrix4f projectionMatrix = new Matrix4f().initProjection(fov, width, height, zNear, zFar);
+
+		return projectionMatrix.mul(transformationMatrix);
+	}
+
 	public Vector3f getTranslation() {
 		return translation;
+	}
+
+	public static void setProjection(float fov, float width, float height, float zNear, float zFar) {
+		Transform.fov = fov;
+		Transform.width = width;
+		Transform.height = height;
+		Transform.zNear = zNear;
+		Transform.zFar = zFar;
 	}
 
 	public void setTranslation(Vector3f translation) {
