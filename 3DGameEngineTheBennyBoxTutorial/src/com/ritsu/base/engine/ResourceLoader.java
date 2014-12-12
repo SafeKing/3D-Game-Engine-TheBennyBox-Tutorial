@@ -62,6 +62,13 @@ public class ResourceLoader {
 					indices.add(Integer.parseInt(tokens[1]) - 1);
 					indices.add(Integer.parseInt(tokens[2]) - 1);
 					indices.add(Integer.parseInt(tokens[3]) - 1);
+
+					if (tokens.length > 4) {
+
+						indices.add(Integer.parseInt(tokens[1]) - 1);
+						indices.add(Integer.parseInt(tokens[3]) - 1);
+						indices.add(Integer.parseInt(tokens[4]) - 1);
+					}
 				}
 			}
 

@@ -36,7 +36,7 @@ public class Vector3f {
 		return this;
 	}
 
-	public Vector3f rotate() {
+	public Vector3f rotate(float angle, Vector3f axis) {
 		return null;
 	}
 
