@@ -11,10 +11,12 @@ public class Game {
 	private Mesh mesh;
 	private Shader shader;
 	private Transform transform;
+	private Camera camera;
 
 	public Game() {
 		mesh = ResourceLoader.loadMesh("box.obj");// new Mesh();
 		shader = new Shader();
+		camera = new Camera();
 
 		// Vertex[] vertices = new Vertex[] { new Vertex(new Vector3f(-1, -1, 0)), new Vertex(new Vector3f(0, 1, 0)), new Vertex(new Vector3f(1, -1, 0)), new Vertex(new Vector3f(0, -1, 1)) };
 		//
@@ -22,8 +24,10 @@ public class Game {
 		//
 		// mesh.addVertices(vertices, indices);
 
-		transform = new Transform();
+		Transform.setCamera(camera);
 		Transform.setProjection(70f, Window.getWidth(), Window.getHeight(), 0.1f, 1000);
+
+		transform = new Transform();
 
 		shader.addVertexShader(ResourceLoader.loadShader("basicVertex.vs"));
 		shader.addFragmentShader(ResourceLoader.loadShader("basicFragment.fs"));
@@ -33,18 +37,21 @@ public class Game {
 	}
 
 	public void input() {
-		if (Input.getKeyDown(Keyboard.KEY_UP)) {
-			System.out.println("We've just pressed up!");
-		}
-		if (Input.getKeyUp(Keyboard.KEY_UP)) {
-			System.out.println("We've just released up!");
-		}
-		if (Input.getMouseDown(1)) {
-			System.out.println("We've just right clocked at" + Input.getMousePosition().toString());
-		}
-		if (Input.getMouseUp(1)) {
-			System.out.println("We've just released right mouse button!");
-		}
+		
+		camera.input();
+		
+//		if (Input.getKeyDown(Keyboard.KEY_UP)) {
+//			System.out.println("We've just pressed up!");
+//		}
+//		if (Input.getKeyUp(Keyboard.KEY_UP)) {
+//			System.out.println("We've just released up!");
+//		}
+//		if (Input.getMouseDown(1)) {
+//			System.out.println("We've just right clocked at" + Input.getMousePosition().toString());
+//		}
+//		if (Input.getMouseUp(1)) {
+//			System.out.println("We've just released right mouse button!");
+//		}
 	}
 
 	float temp = 0.0f;
@@ -56,7 +63,7 @@ public class Game {
 
 		transform.setTranslation(sinTemp, 0, 5);
 		transform.setRotation(0, sinTemp * 180, 0);
-		//transform.setScale(0.7f * sinTemp, 0.7f * sinTemp, 0.7f * sinTemp);
+		// transform.setScale(0.7f * sinTemp, 0.7f * sinTemp, 0.7f * sinTemp);
 	}
 
 	public void render() {
