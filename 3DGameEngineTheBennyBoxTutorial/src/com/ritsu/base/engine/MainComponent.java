@@ -1,11 +1,14 @@
 package com.ritsu.base.engine;
 
-import com.ritsu.base.engine.math.Time;
+import com.ritsu.base.engine.input.Input;
 import com.ritsu.base.engine.render.RenderUtil;
+import com.ritsu.base.engine.resources.math.Time;
+import com.ritsu.base.engine.window.Window;
 
 public class MainComponent {
 
-	public static final int WIDTH = 1080, HEIGHT = WIDTH / 16 * 9;
+	public static final int WIDTH = 800;
+	public static final int HEIGHT = 600;
 	public static final String TITLE = "3D Engine (TheBennyBox) v0.0.01a";
 	public static final double FRAME_CAP = 5000.0;
 
@@ -21,6 +24,7 @@ public class MainComponent {
 
 	public void start() {
 		if (running) return;
+
 		run();
 	}
 
@@ -59,13 +63,14 @@ public class MainComponent {
 				if (Window.isCloseRequested()) stop();
 
 				Time.setDelta(frameTime);
-				Input.update();
 
 				game.input();
+				Input.update();
+
 				game.update();
 
 				if (frameCounter >= Time.SECOND) {
-					System.out.println("FPS: " + frames);
+					System.out.println(frames);
 					frames = 0;
 					frameCounter = 0;
 				}
@@ -102,5 +107,4 @@ public class MainComponent {
 
 		game.start();
 	}
-
 }

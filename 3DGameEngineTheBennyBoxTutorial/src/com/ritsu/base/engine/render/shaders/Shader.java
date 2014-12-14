@@ -1,12 +1,14 @@
-package com.ritsu.base.engine;
+package com.ritsu.base.engine.render.shaders;
 
 import static org.lwjgl.opengl.GL20.*;
 import static org.lwjgl.opengl.GL32.*;
 
 import java.util.HashMap;
 
-import com.ritsu.base.engine.math.Matrix4f;
-import com.ritsu.base.engine.math.Vector3f;
+import com.ritsu.base.engine.render.Material;
+import com.ritsu.base.engine.resources.Util;
+import com.ritsu.base.engine.resources.math.Matrix4f;
+import com.ritsu.base.engine.resources.math.Vector3f;
 
 public class Shader {
 
@@ -18,13 +20,17 @@ public class Shader {
 		uniforms = new HashMap<String, Integer>();
 
 		if (program == 0) {
-			System.err.println("Shader creation failer: Could not find valid memory location in constructor!");
+			System.err.println("Shader creation failed: Could not find valid memory location in constructor");
 			System.exit(1);
 		}
 	}
 
 	public void bind() {
 		glUseProgram(program);
+	}
+
+	public void updateUniforms(Matrix4f worldMatrix, Matrix4f projectedMatrix, Material material) {
+
 	}
 
 	public void addUniform(String uniform) {
@@ -48,7 +54,6 @@ public class Shader {
 	}
 
 	public void addFragmentShader(String text) {
-
 		addProgram(text, GL_FRAGMENT_SHADER);
 	}
 
@@ -56,23 +61,23 @@ public class Shader {
 		glLinkProgram(program);
 
 		if (glGetProgrami(program, GL_LINK_STATUS) == 0) {
-			System.err.println(glGetShaderInfoLog(program, 1024));
+			System.err.println(glGetProgramInfoLog(program, 1024));
 			System.exit(1);
 		}
 
 		glValidateProgram(program);
 
 		if (glGetProgrami(program, GL_VALIDATE_STATUS) == 0) {
-			System.err.println(glGetShaderInfoLog(program, 1024));
+			System.err.println(glGetProgramInfoLog(program, 1024));
 			System.exit(1);
 		}
 	}
 
-	public void addProgram(String text, int type) {
+	private void addProgram(String text, int type) {
 		int shader = glCreateShader(type);
 
 		if (shader == 0) {
-			System.err.println("Shader creation failer: Could not find valid memory location when adding shader!");
+			System.err.println("Shader creation failed: Could not find valid memory location when adding shader");
 			System.exit(1);
 		}
 
@@ -102,5 +107,4 @@ public class Shader {
 	public void setUniform(String uniformName, Matrix4f value) {
 		glUniformMatrix4(uniforms.get(uniformName), true, Util.createFlippedBuffer(value));
 	}
-
 }

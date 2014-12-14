@@ -3,19 +3,28 @@ package com.ritsu.base.engine.render;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL30.*;
 
+import com.ritsu.base.engine.resources.math.Vector3f;
+
 public class RenderUtil {
 
 	public static void clearScreen() {
+		// TODO: Stencil Buffer
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	}
 
 	public static void setTextures(boolean enabled) {
-		
-		if (enabled) {
+		if (enabled)
 			glEnable(GL_TEXTURE_2D);
-		} else {
+		else
 			glDisable(GL_TEXTURE_2D);
-		}
+	}
+
+	public static void unbindTextures() {
+		glBindTexture(GL_TEXTURE_2D, 0);
+	}
+
+	public static void setClearColor(Vector3f color) {
+		glClearColor(color.getX(), color.getY(), color.getZ(), 1.0f);
 	}
 
 	public static void initGraphics() {
@@ -26,6 +35,8 @@ public class RenderUtil {
 		glEnable(GL_CULL_FACE);
 		glEnable(GL_DEPTH_TEST);
 
+		// TODO: Depth clamp for later
+
 		glEnable(GL_TEXTURE_2D);
 		glEnable(GL_FRAMEBUFFER_SRGB);
 	}
@@ -33,5 +44,4 @@ public class RenderUtil {
 	public static String getOpenGLVersion() {
 		return glGetString(GL_VERSION);
 	}
-
 }

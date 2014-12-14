@@ -1,38 +1,43 @@
 package com.ritsu.base.engine.render;
 
-import com.ritsu.base.engine.math.Vector2f;
-import com.ritsu.base.engine.math.Vector3f;
+import com.ritsu.base.engine.resources.math.Vector2f;
+import com.ritsu.base.engine.resources.math.Vector3f;
 
-public class Vertex {
-
+public class Vertex
+{
 	public static final int SIZE = 5;
-
+	
 	private Vector3f pos;
-	private Vector2f textCoord;
-
-	public Vertex(Vector3f pos) {
-		this(pos, new Vector2f(0, 0));
+	private Vector2f texCoord;
+	
+	public Vertex(Vector3f pos)
+	{
+		this(pos, new Vector2f(0,0));
 	}
-
-	public Vertex(Vector3f pos, Vector2f textCoords) {
+	
+	public Vertex(Vector3f pos, Vector2f texCoord)
+	{
 		this.pos = pos;
-		this.textCoord = textCoords;
+		this.texCoord = texCoord;
 	}
 
-	public Vector3f getPos() {
+	public Vector3f getPos()
+	{
 		return pos;
 	}
 
-	public void setPos(Vector3f pos) {
+	public void setPos(Vector3f pos)
+	{
 		this.pos = pos;
 	}
 
-	public Vector2f getTextCoord() {
-		return textCoord;
+	public Vector2f getTexCoord()
+	{
+		return texCoord;
 	}
 
-	public void setTextCoord(Vector2f textCoord) {
-		this.textCoord = textCoord;
+	public void setTexCoord(Vector2f texCoord)
+	{
+		this.texCoord = texCoord;
 	}
-
 }

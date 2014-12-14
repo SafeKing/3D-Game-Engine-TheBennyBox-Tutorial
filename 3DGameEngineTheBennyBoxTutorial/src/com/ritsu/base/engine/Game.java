@@ -1,24 +1,31 @@
 package com.ritsu.base.engine;
 
-import com.ritsu.base.engine.math.Time;
-import com.ritsu.base.engine.math.Transform;
-import com.ritsu.base.engine.math.Vector2f;
-import com.ritsu.base.engine.math.Vector3f;
+import com.ritsu.base.engine.render.Camera;
+import com.ritsu.base.engine.render.Material;
 import com.ritsu.base.engine.render.Mesh;
+import com.ritsu.base.engine.render.RenderUtil;
 import com.ritsu.base.engine.render.Vertex;
+import com.ritsu.base.engine.render.shaders.BasicShader;
+import com.ritsu.base.engine.render.shaders.ResourceLoader;
+import com.ritsu.base.engine.render.shaders.Shader;
+import com.ritsu.base.engine.resources.math.Time;
+import com.ritsu.base.engine.resources.math.Transform;
+import com.ritsu.base.engine.resources.math.Vector2f;
+import com.ritsu.base.engine.resources.math.Vector3f;
+import com.ritsu.base.engine.window.Window;
 
 public class Game {
 
 	private Mesh mesh;
 	private Shader shader;
+	private Material material;
 	private Transform transform;
-	private Texture texture;
 	private Camera camera;
 
 	public Game() {
 		mesh = new Mesh();// ResourceLoader.loadMesh("box.obj");
-		texture = ResourceLoader.loadTexture("test.png");
-		shader = new Shader();
+		material = new Material(ResourceLoader.loadTexture("test.png"), new Vector3f(0, 1, 1));
+		shader = BasicShader.getInstance();
 		camera = new Camera();
 
 		Vertex[] vertices = new Vertex[] { new Vertex(new Vector3f(-1, -1, 0), new Vector2f(0, 0)), new Vertex(new Vector3f(0, 1, 0), new Vector2f(0.5f, 0)), new Vertex(new Vector3f(1, -1, 0), new Vector2f(1.0f, 0)), new Vertex(new Vector3f(0, -1, 1), new Vector2f(0.5f, 1.0f)) };
@@ -27,34 +34,23 @@ public class Game {
 
 		mesh.addVertices(vertices, indices);
 
-		Transform.setCamera(camera);
 		Transform.setProjection(70f, Window.getWidth(), Window.getHeight(), 0.1f, 1000);
-
+		Transform.setCamera(camera);
 		transform = new Transform();
-
-		shader.addVertexShader(ResourceLoader.loadShader("basicVertex.vs"));
-		shader.addFragmentShader(ResourceLoader.loadShader("basicFragment.fs"));
-		shader.compileShader();
-
-		shader.addUniform("transform");
 	}
 
 	public void input() {
-
 		camera.input();
 
-		// if (Input.getKeyDown(Keyboard.KEY_UP)) {
+		// if(Input.getKeyDown(Input.KEY_UP))
 		// System.out.println("We've just pressed up!");
-		// }
-		// if (Input.getKeyUp(Keyboard.KEY_UP)) {
+		// if(Input.getKeyUp(Input.KEY_UP))
 		// System.out.println("We've just released up!");
-		// }
-		// if (Input.getMouseDown(1)) {
-		// System.out.println("We've just right clocked at" + Input.getMousePosition().toString());
-		// }
-		// if (Input.getMouseUp(1)) {
+		//
+		// if(Input.getMouseDown(1))
+		// System.out.println("We've just right clicked at " + Input.getMousePosition().toString());
+		// if(Input.getMouseUp(1))
 		// System.out.println("We've just released right mouse button!");
-		// }
 	}
 
 	float temp = 0.0f;
@@ -70,10 +66,9 @@ public class Game {
 	}
 
 	public void render() {
+		RenderUtil.setClearColor(Transform.getCamera().getPos().div(2048f).abs());
 		shader.bind();
-		shader.setUniform("transform", transform.getProjectedTransformation());
-		texture.bind();
+		shader.updateUniforms(transform.getTransformation(), transform.getProjectedTransformation(), material);
 		mesh.draw();
 	}
-
 }
