@@ -5,8 +5,7 @@ in vec2 texCoord0;
 uniform vec3 color;
 uniform sampler2D sampler;
 
-void main()
-{
+void main() {
     vec4 textureColor = texture2D(sampler, texCoord0.xy);
 
     if(textureColor == 0)
