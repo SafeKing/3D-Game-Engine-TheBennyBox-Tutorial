@@ -5,6 +5,8 @@ import com.ritsu.base.engine.render.Material;
 import com.ritsu.base.engine.render.Mesh;
 import com.ritsu.base.engine.render.RenderUtil;
 import com.ritsu.base.engine.render.Vertex;
+import com.ritsu.base.engine.render.lightning.BaseLight;
+import com.ritsu.base.engine.render.lightning.DirectionalLight;
 import com.ritsu.base.engine.render.lightning.PhongShader;
 import com.ritsu.base.engine.render.shaders.ResourceLoader;
 import com.ritsu.base.engine.render.shaders.Shader;
@@ -29,16 +31,17 @@ public class Game {
 		camera = new Camera();
 		transform = new Transform();
 
-		Vertex[] vertices = new Vertex[] { new Vertex(new Vector3f(-1, -1, 0), new Vector2f(0, 0)), new Vertex(new Vector3f(0, 1, 0), new Vector2f(0.5f, 0)), new Vertex(new Vector3f(1, -1, 0), new Vector2f(1.0f, 0)), new Vertex(new Vector3f(0, -1, 1), new Vector2f(0.5f, 1.0f)) };
+		Vertex[] vertices = new Vertex[] { new Vertex(new Vector3f(-1.0f, -1.0f, 0.5773f), new Vector2f(0.0f, 0.0f)), new Vertex(new Vector3f(0.0f, -1.0f, -1.15475f), new Vector2f(0.5f, 0.0f)), new Vertex(new Vector3f(1.0f, -1.0f, 0.5773f), new Vector2f(1.0f, 0.0f)), new Vertex(new Vector3f(0.0f, 1.0f, 0.0f), new Vector2f(0.5f, 1.0f)) };
 
-		int[] indices = new int[] { 3, 1, 0, 2, 1, 3, 0, 1, 2, 0, 2, 3 };
+		int indices[] = { 0, 3, 1, 1, 3, 2, 2, 3, 0, 1, 2, 0 };
 
-		mesh.addVertices(vertices, indices);
+		mesh.addVertices(vertices, indices, true);
 
 		Transform.setProjection(70f, Window.getWidth(), Window.getHeight(), 0.1f, 1000);
 		Transform.setCamera(camera);
 
 		PhongShader.setAmbientLight(new Vector3f(0.1f, 0.1f, 0.1f));
+		PhongShader.setDirectionalLight(new DirectionalLight(new BaseLight(new Vector3f(1, 1, 1), 0.8f), new Vector3f(1, 1, 1)));
 	}
 
 	public void input() {
