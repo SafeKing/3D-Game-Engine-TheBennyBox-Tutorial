@@ -1,14 +1,13 @@
 package com.ritsu.base.engine.render;
 
 import static org.lwjgl.opengl.GL11.*;
-import static org.lwjgl.opengl.GL30.*;
+import static org.lwjgl.opengl.GL32.*;
 
 import com.ritsu.base.engine.resources.math.Vector3f;
 
 public class RenderUtil {
 
 	public static void clearScreen() {
-		// TODO: Stencil Buffer
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	}
 
@@ -35,10 +34,9 @@ public class RenderUtil {
 		glEnable(GL_CULL_FACE);
 		glEnable(GL_DEPTH_TEST);
 
-		// TODO: Depth clamp for later
+		glEnable(GL_DEPTH_CLAMP);
 
 		glEnable(GL_TEXTURE_2D);
-		glEnable(GL_FRAMEBUFFER_SRGB);
 	}
 
 	public static String getOpenGLVersion() {
