@@ -2,7 +2,6 @@ package com.ritsu.base.engine.render.lightning;
 
 import com.ritsu.base.engine.render.Material;
 import com.ritsu.base.engine.render.RenderUtil;
-import com.ritsu.base.engine.render.shaders.ResourceLoader;
 import com.ritsu.base.engine.render.shaders.Shader;
 import com.ritsu.base.engine.resources.math.Matrix4f;
 import com.ritsu.base.engine.resources.math.Transform;
@@ -27,8 +26,8 @@ public class PhongShader extends Shader {
 	private PhongShader() {
 		super();
 
-		addVertexShader(ResourceLoader.loadShader("phongVertex.vs"));
-		addFragmentShader(ResourceLoader.loadShader("phongFragment.fs"));
+		addVertexShaderFromFile("phongVertex.vs");
+		addFragmentShaderFromFile("phongFragment.fs");
 		compileShader();
 
 		addUniform("transform");

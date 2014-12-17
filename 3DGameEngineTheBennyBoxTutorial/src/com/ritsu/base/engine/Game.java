@@ -4,13 +4,14 @@ import com.ritsu.base.engine.render.Camera;
 import com.ritsu.base.engine.render.Material;
 import com.ritsu.base.engine.render.Mesh;
 import com.ritsu.base.engine.render.RenderUtil;
+import com.ritsu.base.engine.render.Texture;
 import com.ritsu.base.engine.render.Vertex;
 import com.ritsu.base.engine.render.lightning.Attenuation;
 import com.ritsu.base.engine.render.lightning.BaseLight;
+import com.ritsu.base.engine.render.lightning.DirectionalLight;
 import com.ritsu.base.engine.render.lightning.PhongShader;
 import com.ritsu.base.engine.render.lightning.PointLight;
 import com.ritsu.base.engine.render.lightning.SpotLight;
-import com.ritsu.base.engine.render.shaders.ResourceLoader;
 import com.ritsu.base.engine.render.shaders.Shader;
 import com.ritsu.base.engine.resources.math.Time;
 import com.ritsu.base.engine.resources.math.Transform;
@@ -32,8 +33,8 @@ public class Game {
 	SpotLight sLight1 = new SpotLight(new PointLight(new BaseLight(new Vector3f(0, 1f, 1f), 0.8f), new Attenuation(0, 0, 0.1f), new Vector3f(-2, 0, 5f), 30), new Vector3f(1, 1, 1), 0.7f);
 
 	public Game() {
-		mesh = new Mesh();// ResourceLoader.loadMesh("box.obj");
-		material = new Material(ResourceLoader.loadTexture("test.png"), new Vector3f(1, 1, 1), 1, 8);
+		// ResourceLoader.loadMesh("box.obj");
+		material = new Material(new Texture("test.png"), new Vector3f(1, 1, 1), 1, 8);
 		shader = PhongShader.getInstance();
 		camera = new Camera();
 		transform = new Transform();
@@ -49,15 +50,15 @@ public class Game {
 
 		int indices[] = { 0, 1, 2, 2, 1, 3 };
 
-		mesh.addVertices(vertices, indices, true);
+		mesh = new Mesh(vertices, indices, true);
 
 		Transform.setProjection(70f, Window.getWidth(), Window.getHeight(), 0.1f, 1000);
 		Transform.setCamera(camera);
 
 		PhongShader.setAmbientLight(new Vector3f(0.1f, 0.1f, 0.1f));
-		// PhongShader.setDirectionalLight(new DirectionalLight(new BaseLight(new Vector3f(1,1,1), 0.8f), new Vector3f(1,1,1)));
+		PhongShader.setDirectionalLight(new DirectionalLight(new BaseLight(new Vector3f(1,1,1), 0.8f), new Vector3f(1,1,1)));
 
-		// PhongShader.setPointLight(new PointLight[]{pLight1, pLight2});
+		PhongShader.setPointLight(new PointLight[]{pLight1, pLight2});
 		PhongShader.setSpotLights(new SpotLight[] { sLight1 });
 	}
 
