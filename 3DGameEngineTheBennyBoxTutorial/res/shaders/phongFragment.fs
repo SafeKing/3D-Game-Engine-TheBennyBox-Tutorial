@@ -69,15 +69,15 @@ vec4 calcDirectionalLight(DirectionalLight directionalLight, vec3 normal) {
 	return calcLight(directionalLight.base, -directionalLight.direction, normal);
 }
 
-vec4 calcPointLight(PointLight pointLights, vec3 normal) {
+vec4 calcPointLight(PointLight pointLight, vec3 normal) {
 	vec3 lightDirection = worldPos0 - pointLight.position;
 	float distanceToPoint = length(lightDirection);
 	lightDirection = normalize(lightDirection);
-	
+
 	vec4 color = calcLight(pointLight.base, lightDirection, normal);
-	
+
 	float attenuation = pointLight.atten.constant + pointLight.atten.linear * distanceToPoint + pointLight.atten.exponent * distanceToPoint * distanceToPoint + 0.0001;
-	
+
 	return color / attenuation;
 }
 

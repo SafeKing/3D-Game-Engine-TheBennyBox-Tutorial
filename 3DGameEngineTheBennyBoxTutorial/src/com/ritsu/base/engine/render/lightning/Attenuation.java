@@ -35,5 +35,4 @@ public class Attenuation {
 	public void setExponent(float exponent) {
 		this.exponent = exponent;
 	}
-
 }
