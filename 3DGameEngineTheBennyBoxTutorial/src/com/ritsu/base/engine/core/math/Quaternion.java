@@ -1,4 +1,4 @@
-package com.ritsu.base.engine.resources.math;
+package com.ritsu.base.engine.core.math;
 
 public class Quaternion
 {

@@ -1,7 +1,7 @@
 package com.ritsu.base.engine.render;
 
-import com.ritsu.base.engine.resources.math.Vector2f;
-import com.ritsu.base.engine.resources.math.Vector3f;
+import com.ritsu.base.engine.core.math.Vector2f;
+import com.ritsu.base.engine.core.math.Vector3f;
 
 public class Vertex {
 

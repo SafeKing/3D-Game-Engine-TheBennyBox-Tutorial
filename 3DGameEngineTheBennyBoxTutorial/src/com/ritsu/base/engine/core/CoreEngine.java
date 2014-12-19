@@ -1,25 +1,35 @@
-package com.ritsu.base.engine;
+package com.ritsu.base.engine.core;
 
-import com.ritsu.base.engine.input.Input;
+import com.ritsu.base.engine.core.input.Input;
+import com.ritsu.base.engine.core.math.Time;
 import com.ritsu.base.engine.render.RenderUtil;
-import com.ritsu.base.engine.resources.math.Time;
-import com.ritsu.base.engine.window.Window;
+import com.ritsu.base.engine.render.window.Window;
+import com.ritsu.base.game.Game;
 
-public class MainComponent {
-
-	public static final int WIDTH = 800;
-	public static final int HEIGHT = 600;
-	public static final String TITLE = "3D Engine (TheBennyBox) v0.0.01a";
-	public static final double FRAME_CAP = 5000.0;
+public class CoreEngine {
 
 	private boolean running;
 	private Game game;
+	private int width;
+	private int height;
+	private double frameTime;
 
-	public MainComponent() {
+	public CoreEngine(int width, int height, double framerate, Game game) {
+		running = false;
+		this.game = game;
+		this.width = width;
+		this.height = height;
+		this.frameTime = 1.0 / framerate;
+	}
+
+	private void initializeRenderingSystem() {
 		System.out.println(RenderUtil.getOpenGLVersion());
 		RenderUtil.initGraphics();
-		running = false;
-		game = new Game();
+	}
+
+	public void createWindow(String title) {
+		Window.createWindow(width, height, title);
+		initializeRenderingSystem();
 	}
 
 	public void start() {
@@ -39,8 +49,8 @@ public class MainComponent {
 
 		int frames = 0;
 		long frameCounter = 0;
-
-		final double frameTime = 1.0 / FRAME_CAP;
+		
+		game.init();
 
 		long lastTime = Time.getTime();
 		double unprocessedTime = 0;
@@ -100,11 +110,4 @@ public class MainComponent {
 		Window.dispose();
 	}
 
-	public static void main(String[] args) {
-		Window.createWindow(WIDTH, HEIGHT, TITLE);
-
-		MainComponent game = new MainComponent();
-
-		game.start();
-	}
 }

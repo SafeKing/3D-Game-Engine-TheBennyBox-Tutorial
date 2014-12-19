@@ -1,11 +1,11 @@
 package com.ritsu.base.engine.render.lightning;
 
+import com.ritsu.base.engine.core.math.Matrix4f;
+import com.ritsu.base.engine.core.math.Transform;
+import com.ritsu.base.engine.core.math.Vector3f;
 import com.ritsu.base.engine.render.Material;
 import com.ritsu.base.engine.render.RenderUtil;
 import com.ritsu.base.engine.render.shaders.Shader;
-import com.ritsu.base.engine.resources.math.Matrix4f;
-import com.ritsu.base.engine.resources.math.Transform;
-import com.ritsu.base.engine.resources.math.Vector3f;
 
 public class PhongShader extends Shader {
 

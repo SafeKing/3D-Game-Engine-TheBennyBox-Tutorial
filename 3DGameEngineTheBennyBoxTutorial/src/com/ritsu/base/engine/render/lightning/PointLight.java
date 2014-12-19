@@ -1,6 +1,6 @@
 package com.ritsu.base.engine.render.lightning;
 
-import com.ritsu.base.engine.resources.math.Vector3f;
+import com.ritsu.base.engine.core.math.Vector3f;
 
 public class PointLight {
 

@@ -3,7 +3,7 @@ package com.ritsu.base.engine.render;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL32.*;
 
-import com.ritsu.base.engine.resources.math.Vector3f;
+import com.ritsu.base.engine.core.math.Vector3f;
 
 public class RenderUtil {
 

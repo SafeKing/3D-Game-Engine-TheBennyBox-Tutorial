@@ -1,5 +1,9 @@
-package com.ritsu.base.engine;
+package com.ritsu.base.game;
 
+import com.ritsu.base.engine.core.math.Time;
+import com.ritsu.base.engine.core.math.Transform;
+import com.ritsu.base.engine.core.math.Vector2f;
+import com.ritsu.base.engine.core.math.Vector3f;
 import com.ritsu.base.engine.render.Camera;
 import com.ritsu.base.engine.render.Material;
 import com.ritsu.base.engine.render.Mesh;
@@ -13,13 +17,9 @@ import com.ritsu.base.engine.render.lightning.PhongShader;
 import com.ritsu.base.engine.render.lightning.PointLight;
 import com.ritsu.base.engine.render.lightning.SpotLight;
 import com.ritsu.base.engine.render.shaders.Shader;
-import com.ritsu.base.engine.resources.math.Time;
-import com.ritsu.base.engine.resources.math.Transform;
-import com.ritsu.base.engine.resources.math.Vector2f;
-import com.ritsu.base.engine.resources.math.Vector3f;
-import com.ritsu.base.engine.window.Window;
+import com.ritsu.base.engine.render.window.Window;
 
-public class Game {
+public class TestGame implements Game {
 
 	private Mesh mesh;
 	private Shader shader;
@@ -32,7 +32,7 @@ public class Game {
 
 	SpotLight sLight1 = new SpotLight(new PointLight(new BaseLight(new Vector3f(0, 1f, 1f), 0.8f), new Attenuation(0, 0, 0.1f), new Vector3f(-2, 0, 5f), 30), new Vector3f(1, 1, 1), 0.7f);
 
-	public Game() {
+	public void init() {
 		// ResourceLoader.loadMesh("box.obj");
 		material = new Material(new Texture("test.png"), new Vector3f(1, 1, 1), 1, 8);
 		shader = PhongShader.getInstance();
@@ -56,9 +56,9 @@ public class Game {
 		Transform.setCamera(camera);
 
 		PhongShader.setAmbientLight(new Vector3f(0.1f, 0.1f, 0.1f));
-		PhongShader.setDirectionalLight(new DirectionalLight(new BaseLight(new Vector3f(1,1,1), 0.8f), new Vector3f(1,1,1)));
+		PhongShader.setDirectionalLight(new DirectionalLight(new BaseLight(new Vector3f(1, 1, 1), 0.8f), new Vector3f(1, 1, 1)));
 
-		PhongShader.setPointLight(new PointLight[]{pLight1, pLight2});
+		PhongShader.setPointLight(new PointLight[] { pLight1, pLight2 });
 		PhongShader.setSpotLights(new SpotLight[] { sLight1 });
 	}
 

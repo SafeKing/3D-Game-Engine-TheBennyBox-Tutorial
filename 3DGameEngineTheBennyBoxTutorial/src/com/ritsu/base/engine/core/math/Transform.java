@@ -1,4 +1,4 @@
-package com.ritsu.base.engine.resources.math;
+package com.ritsu.base.engine.core.math;
 
 import com.ritsu.base.engine.render.Camera;
 

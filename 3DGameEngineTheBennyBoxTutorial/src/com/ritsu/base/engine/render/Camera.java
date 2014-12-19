@@ -1,10 +1,10 @@
 package com.ritsu.base.engine.render;
 
-import com.ritsu.base.engine.input.Input;
-import com.ritsu.base.engine.resources.math.Time;
-import com.ritsu.base.engine.resources.math.Vector2f;
-import com.ritsu.base.engine.resources.math.Vector3f;
-import com.ritsu.base.engine.window.Window;
+import com.ritsu.base.engine.core.input.Input;
+import com.ritsu.base.engine.core.math.Time;
+import com.ritsu.base.engine.core.math.Vector2f;
+import com.ritsu.base.engine.core.math.Vector3f;
+import com.ritsu.base.engine.render.window.Window;
 
 public class Camera
 {

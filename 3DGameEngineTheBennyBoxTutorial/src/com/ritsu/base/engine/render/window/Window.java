@@ -1,4 +1,4 @@
-package com.ritsu.base.engine.window;
+package com.ritsu.base.engine.render.window;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Keyboard;

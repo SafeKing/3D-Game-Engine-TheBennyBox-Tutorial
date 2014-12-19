@@ -1,8 +1,8 @@
 package com.ritsu.base.engine.render.shaders;
 
+import com.ritsu.base.engine.core.math.Matrix4f;
 import com.ritsu.base.engine.render.Material;
 import com.ritsu.base.engine.render.RenderUtil;
-import com.ritsu.base.engine.resources.math.Matrix4f;
 
 public class BasicShader extends Shader {
 

@@ -1,4 +1,4 @@
-package com.ritsu.base.engine.resources;
+package com.ritsu.base.engine.core.resources;
 
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
@@ -6,8 +6,8 @@ import java.util.ArrayList;
 
 import org.lwjgl.BufferUtils;
 
+import com.ritsu.base.engine.core.math.Matrix4f;
 import com.ritsu.base.engine.render.Vertex;
-import com.ritsu.base.engine.resources.math.Matrix4f;
 
 public class Util {
 

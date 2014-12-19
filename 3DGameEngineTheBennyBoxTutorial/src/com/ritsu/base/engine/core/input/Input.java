@@ -1,9 +1,9 @@
-package com.ritsu.base.engine.input;
+package com.ritsu.base.engine.core.input;
 
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
-import com.ritsu.base.engine.resources.math.Vector2f;
+import com.ritsu.base.engine.core.math.Vector2f;
 
 public class Input 
 {
