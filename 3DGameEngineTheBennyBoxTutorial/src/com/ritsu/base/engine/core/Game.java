@@ -1,4 +1,4 @@
-package com.ritsu.base.game;
+package com.ritsu.base.engine.core;
 
 public interface Game {
 

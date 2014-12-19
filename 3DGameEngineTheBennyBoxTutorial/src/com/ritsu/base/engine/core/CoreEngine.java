@@ -4,7 +4,6 @@ import com.ritsu.base.engine.core.input.Input;
 import com.ritsu.base.engine.core.math.Time;
 import com.ritsu.base.engine.render.RenderUtil;
 import com.ritsu.base.engine.render.window.Window;
-import com.ritsu.base.game.Game;
 
 public class CoreEngine {
 
