@@ -42,12 +42,12 @@ public class Material {
 	}
 
 	
-	public float getspecularPower() {
+	public float getSpecularPower() {
 		return specularPower;
 	}
 
 	
-	public void setspecularPower(float specularExponent) {
+	public void setSpecularPower(float specularExponent) {
 		this.specularPower = specularPower;
 	}
 
