@@ -3,6 +3,7 @@ package com.ritsu.base.engine.render.lightning;
 import com.ritsu.base.engine.core.math.Matrix4f;
 import com.ritsu.base.engine.core.math.Transform;
 import com.ritsu.base.engine.core.math.Vector3f;
+import com.ritsu.base.engine.render.Camera;
 import com.ritsu.base.engine.render.Material;
 import com.ritsu.base.engine.render.shaders.Shader;
 
@@ -64,7 +65,10 @@ public class PhongShader extends Shader {
 		}
 	}
 
-	public void updateUniforms(Matrix4f worldMatrix, Matrix4f projectedMatrix, Material material) {
+	public void updateUniforms(Transform transform, Material material) {
+
+		Matrix4f worldMatrix = transform.getTransformation();
+		Matrix4f projectedMatrix = getRenderingEngine().getMainCamera().getViewProjection().mul(worldMatrix);
 		material.getTexture().bind();
 
 		setUniform("transformProjected", projectedMatrix);
@@ -85,7 +89,7 @@ public class PhongShader extends Shader {
 		setUniformf("specularIntensity", material.getSpecularIntensity());
 		setUniformf("specularPower", material.getspecularPower());
 
-		setUniform("eyePos", Transform.getCamera().getPos());
+		setUniform("eyePos", getRenderingEngine().getMainCamera().getPos());
 	}
 
 	public static Vector3f getAmbientLight() {
