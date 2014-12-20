@@ -4,7 +4,6 @@ import com.ritsu.base.engine.core.math.Matrix4f;
 import com.ritsu.base.engine.core.math.Transform;
 import com.ritsu.base.engine.core.math.Vector3f;
 import com.ritsu.base.engine.render.Material;
-import com.ritsu.base.engine.render.RenderUtil;
 import com.ritsu.base.engine.render.shaders.Shader;
 
 public class PhongShader extends Shader {
@@ -66,10 +65,7 @@ public class PhongShader extends Shader {
 	}
 
 	public void updateUniforms(Matrix4f worldMatrix, Matrix4f projectedMatrix, Material material) {
-		if (material.getTexture() != null)
-			material.getTexture().bind();
-		else
-			RenderUtil.unbindTextures();
+		material.getTexture().bind();
 
 		setUniform("transformProjected", projectedMatrix);
 		setUniform("transform", worldMatrix);

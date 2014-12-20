@@ -3,6 +3,7 @@ package com.ritsu.base.engine.core;
 import java.util.ArrayList;
 
 import com.ritsu.base.engine.core.math.Transform;
+import com.ritsu.base.engine.render.shaders.Shader;
 
 public class GameObject {
 
@@ -45,13 +46,13 @@ public class GameObject {
 		}
 	}
 
-	public void render() {
+	public void render(Shader shader) {
 
 		for (GameComponent component : components) {
-			component.render(transform);
+			component.render(transform, shader);
 		}
 		for (GameObject child : children) {
-			child.render();
+			child.render(shader);
 		}
 	}
 

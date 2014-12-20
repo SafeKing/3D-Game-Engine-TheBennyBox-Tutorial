@@ -4,7 +4,6 @@ import com.ritsu.base.engine.core.GameComponent;
 import com.ritsu.base.engine.core.math.Transform;
 import com.ritsu.base.engine.render.Material;
 import com.ritsu.base.engine.render.Mesh;
-import com.ritsu.base.engine.render.shaders.BasicShader;
 import com.ritsu.base.engine.render.shaders.Shader;
 
 public class MeshRenderer implements GameComponent {
@@ -18,17 +17,15 @@ public class MeshRenderer implements GameComponent {
 	}
 
 	public void input(Transform transform) {
-		
+
 	}
 
 	public void update(Transform transform) {
-		
+
 	}
 
-	public void render(Transform transform) {
-		
-		Shader shader=BasicShader.getInstance();
-		
+	public void render(Transform transform, Shader shader) {
+
 		shader.bind();
 		shader.updateUniforms(transform.getTransformation(), transform.getProjectedTransformation(), material);
 		mesh.draw();

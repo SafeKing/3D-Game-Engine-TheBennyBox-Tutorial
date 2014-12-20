@@ -2,13 +2,13 @@ package com.ritsu.base.engine.core;
 
 import com.ritsu.base.engine.core.input.Input;
 import com.ritsu.base.engine.core.math.Time;
-import com.ritsu.base.engine.render.RenderUtil;
 import com.ritsu.base.engine.render.window.Window;
 
 public class CoreEngine {
 
 	private boolean running;
 	private Game game;
+	private RenderingEngine renderingEngine;
 	private int width;
 	private int height;
 	private double frameTime;
@@ -22,8 +22,8 @@ public class CoreEngine {
 	}
 
 	private void initializeRenderingSystem() {
-		System.out.println(RenderUtil.getOpenGLVersion());
-		RenderUtil.initGraphics();
+		System.out.println(RenderingEngine.getOpenGLVersion());
+		this.renderingEngine = new RenderingEngine();
 	}
 
 	public void createWindow(String title) {
@@ -48,7 +48,7 @@ public class CoreEngine {
 
 		int frames = 0;
 		long frameCounter = 0;
-		
+
 		game.init();
 
 		long lastTime = Time.getTime();
@@ -85,7 +85,8 @@ public class CoreEngine {
 				}
 			}
 			if (render) {
-				render();
+				renderingEngine.render(game.getRootObject());
+				Window.render();
 				frames++;
 			} else {
 				try {
@@ -97,12 +98,6 @@ public class CoreEngine {
 		}
 
 		cleanUp();
-	}
-
-	private void render() {
-		RenderUtil.clearScreen();
-		game.render();
-		Window.render();
 	}
 
 	private void cleanUp() {

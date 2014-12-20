@@ -2,7 +2,6 @@ package com.ritsu.base.engine.render.shaders;
 
 import com.ritsu.base.engine.core.math.Matrix4f;
 import com.ritsu.base.engine.render.Material;
-import com.ritsu.base.engine.render.RenderUtil;
 
 public class BasicShader extends Shader {
 
@@ -24,10 +23,7 @@ public class BasicShader extends Shader {
 	}
 
 	public void updateUniforms(Matrix4f worldMatrix, Matrix4f projectedMatrix, Material material) {
-		if (material.getTexture() != null)
-			material.getTexture().bind();
-		else
-			RenderUtil.unbindTextures();
+		material.getTexture().bind();
 
 		setUniform("transform", projectedMatrix);
 		setUniform("color", material.getColor());
