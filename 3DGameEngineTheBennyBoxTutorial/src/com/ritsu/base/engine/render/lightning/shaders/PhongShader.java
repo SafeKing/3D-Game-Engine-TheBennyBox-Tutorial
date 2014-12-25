@@ -54,6 +54,7 @@ public class PhongShader extends Shader {
 			addUniform("pointLights[" + i + "].position");
 			addUniform("pointLights[" + i + "].range");
 		}
+		
 		for (int i = 0; i < MAX_SPOT_LIGHTS; i++) {
 			addUniform("spotLights[" + i + "].pointLight.base.color");
 			addUniform("spotLights[" + i + "].pointLight.base.intensity");

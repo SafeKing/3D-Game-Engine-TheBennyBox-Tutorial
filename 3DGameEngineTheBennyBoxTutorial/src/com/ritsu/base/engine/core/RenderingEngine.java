@@ -27,10 +27,15 @@ import static org.lwjgl.opengl.GL32.GL_DEPTH_CLAMP;
 
 import com.ritsu.base.engine.core.math.Vector3f;
 import com.ritsu.base.engine.render.Camera;
+import com.ritsu.base.engine.render.lightning.Attenuation;
 import com.ritsu.base.engine.render.lightning.BaseLight;
 import com.ritsu.base.engine.render.lightning.DirectionalLight;
 import com.ritsu.base.engine.render.lightning.ForwardAmbient;
 import com.ritsu.base.engine.render.lightning.ForwardDirectional;
+import com.ritsu.base.engine.render.lightning.ForwardPoint;
+import com.ritsu.base.engine.render.lightning.ForwardSpot;
+import com.ritsu.base.engine.render.lightning.PointLight;
+import com.ritsu.base.engine.render.lightning.SpotLight;
 import com.ritsu.base.engine.render.lightning.shaders.Shader;
 import com.ritsu.base.engine.render.window.Window;
 
@@ -40,6 +45,8 @@ public class RenderingEngine {
 	private Vector3f ambientLight;
 	private DirectionalLight directionalLight;
 	private DirectionalLight directionalLight2;
+	private PointLight pointLight;
+	private SpotLight spotLight;
 
 	public RenderingEngine() {
 		glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
@@ -58,6 +65,10 @@ public class RenderingEngine {
 		ambientLight = new Vector3f(0.2f, 0.2f, 0.2f);
 		directionalLight = new DirectionalLight(new BaseLight(new Vector3f(0, 0, 1), 0.4f), new Vector3f(1, 1, 1));
 		directionalLight2 = new DirectionalLight(new BaseLight(new Vector3f(1, 0, 0), 0.4f), new Vector3f(-1, 1, -1));
+
+		pointLight = new PointLight(new BaseLight(new Vector3f(0, 1, 0), 4f), new Attenuation(0, 0, 1), new Vector3f(5, 0, 5), 100);
+
+		spotLight = new SpotLight(new PointLight(new BaseLight(new Vector3f(0, 1, 1), 0.4f), new Attenuation(0, 0, 0.1f), new Vector3f(0, 0, 0), 100), new Vector3f(1, 0, 0), 0.7f);
 	}
 
 	public Vector3f getAmbientLight() {
@@ -68,6 +79,14 @@ public class RenderingEngine {
 		return directionalLight;
 	}
 
+	public PointLight getPointLight() {
+		return pointLight;
+	}
+
+	public SpotLight getSpotLight() {
+		return spotLight;
+	}
+
 	public void input(float delta) {
 		mainCamera.input(delta);
 	}
@@ -76,9 +95,13 @@ public class RenderingEngine {
 		clearScreen();
 
 		Shader forwardAmbient = ForwardAmbient.getInstance();
+		Shader forwardPoint = ForwardPoint.getInstance();
+		Shader forwardSpot = ForwardSpot.getInstance();
 		Shader forwardDirectional = ForwardDirectional.getInstance();
 		forwardAmbient.setRenderingEngine(this);
 		forwardDirectional.setRenderingEngine(this);
+		forwardPoint.setRenderingEngine(this);
+		forwardSpot.setRenderingEngine(this);
 
 		object.render(forwardAmbient);
 
@@ -99,6 +122,9 @@ public class RenderingEngine {
 		directionalLight = directionalLight2;
 		directionalLight2 = temp;
 
+		object.render(forwardPoint);
+		object.render(forwardSpot);
+
 		glDepthFunc(GL_LESS);
 		glDepthMask(true);
 		glDisable(GL_BLEND);
@@ -110,7 +136,6 @@ public class RenderingEngine {
 	}
 
 	private static void clearScreen() {
-		// TODO: Stencil Buffer
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	}
 
