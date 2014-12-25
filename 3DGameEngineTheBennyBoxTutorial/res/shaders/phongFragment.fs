@@ -105,8 +105,7 @@ vec4 calcSpotLight(SpotLight spotLight, vec3 normal) {
 
 	if(spotFactor > spotLight.cutoff)
 	{
-		color = calcPointLight(spotLight.pointLight, normal) *
-			(1.0 - (1.0 - spotFactor)/(1.0 - spotLight.cutoff));
+		color = calcPointLight(spotLight.pointLight, normal) * (1.0 - (1.0 - spotFactor)/(1.0 - spotLight.cutoff));
 	}
 
 	return color;
@@ -129,6 +128,7 @@ void main(){
 			totalLight += calcPointLight(pointLights[i], normal);
 		}
 	}
+	
 	for(int i = 0; i < MAX_SPOT_LIGHTS; i++) {
 		if(spotLights[i].pointLight.base.intensity > 0) {
 		totalLight += calcSpotLight(spotLights[i], normal);

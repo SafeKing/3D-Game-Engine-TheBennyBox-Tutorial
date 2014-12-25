@@ -1,10 +1,13 @@
-package com.ritsu.base.engine.render.lightning;
+package com.ritsu.base.engine.render.shaders;
 
 import com.ritsu.base.engine.core.math.Matrix4f;
 import com.ritsu.base.engine.core.math.Transform;
 import com.ritsu.base.engine.core.math.Vector3f;
 import com.ritsu.base.engine.render.Material;
-import com.ritsu.base.engine.render.shaders.Shader;
+import com.ritsu.base.engine.render.lightning.BaseLight;
+import com.ritsu.base.engine.render.lightning.DirectionalLight;
+import com.ritsu.base.engine.render.lightning.PointLight;
+import com.ritsu.base.engine.render.lightning.SpotLight;
 
 public class PhongShader extends Shader {
 

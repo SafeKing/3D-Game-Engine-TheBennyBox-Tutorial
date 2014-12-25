@@ -5,13 +5,14 @@ import static org.lwjgl.opengl.GL32.*;
 
 import com.ritsu.base.engine.core.math.Vector3f;
 import com.ritsu.base.engine.render.Camera;
-import com.ritsu.base.engine.render.shaders.BasicShader;
+import com.ritsu.base.engine.render.lightning.ForwardAmbient;
 import com.ritsu.base.engine.render.shaders.Shader;
 import com.ritsu.base.engine.render.window.Window;
 
 public class RenderingEngine {
 
 	private Camera mainCamera;
+	private Vector3f ambientLight;
 
 	public RenderingEngine() {
 
@@ -27,6 +28,12 @@ public class RenderingEngine {
 		glEnable(GL_TEXTURE_2D);
 
 		mainCamera = new Camera((float) Math.toRadians(70.0f), (float) Window.getWidth() / Window.getHeight(), 0.01f, 1000.0f);;
+
+		ambientLight = new Vector3f(0.2f, 0.2f, 0.2f);
+	}
+
+	public Vector3f getAmbientLight() {
+		return ambientLight;
 	}
 
 	public void input(float delta) {
@@ -36,11 +43,15 @@ public class RenderingEngine {
 	public void render(GameObject object) {
 
 		clearScreen();
-
-		Shader shader = BasicShader.getInstance();
+		Shader shader = ForwardAmbient.getInstance();
 		shader.setRenderingEngine(this);
 
-		object.render(BasicShader.getInstance());
+		object.render(shader);
+
+		// Shader shader = BasicShader.getInstance();
+		// shader.setRenderingEngine(this);
+		//
+		// object.render(BasicShader.getInstance());
 	}
 
 	private static void clearScreen() {
