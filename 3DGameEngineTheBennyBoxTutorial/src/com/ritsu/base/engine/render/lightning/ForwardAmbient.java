@@ -3,7 +3,7 @@ package com.ritsu.base.engine.render.lightning;
 import com.ritsu.base.engine.core.math.Matrix4f;
 import com.ritsu.base.engine.core.math.Transform;
 import com.ritsu.base.engine.render.Material;
-import com.ritsu.base.engine.render.shaders.Shader;
+import com.ritsu.base.engine.render.lightning.shaders.Shader;
 
 public class ForwardAmbient extends Shader {
 
@@ -29,7 +29,6 @@ public class ForwardAmbient extends Shader {
 	}
 
 	public void updateUniforms(Transform transform, Material material) {
-
 		Matrix4f worldMatrix = transform.getTransformation();
 		Matrix4f projectedMatrix = getRenderingEngine().getMainCamera().getViewProjection().mul(worldMatrix);
 		material.getTexture().bind();

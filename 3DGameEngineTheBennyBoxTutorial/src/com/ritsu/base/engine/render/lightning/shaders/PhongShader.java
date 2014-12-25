@@ -1,4 +1,4 @@
-package com.ritsu.base.engine.render.shaders;
+package com.ritsu.base.engine.render.lightning.shaders;
 
 import com.ritsu.base.engine.core.math.Matrix4f;
 import com.ritsu.base.engine.core.math.Transform;

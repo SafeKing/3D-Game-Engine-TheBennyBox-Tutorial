@@ -4,7 +4,7 @@ import com.ritsu.base.engine.core.GameComponent;
 import com.ritsu.base.engine.core.math.Transform;
 import com.ritsu.base.engine.render.Material;
 import com.ritsu.base.engine.render.Mesh;
-import com.ritsu.base.engine.render.shaders.Shader;
+import com.ritsu.base.engine.render.lightning.shaders.Shader;
 
 public class MeshRenderer implements GameComponent {
 

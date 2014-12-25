@@ -1,7 +1,7 @@
 package com.ritsu.base.engine.core;
 
 import com.ritsu.base.engine.core.math.Transform;
-import com.ritsu.base.engine.render.shaders.Shader;
+import com.ritsu.base.engine.render.lightning.shaders.Shader;
 
 public interface GameComponent {
 
