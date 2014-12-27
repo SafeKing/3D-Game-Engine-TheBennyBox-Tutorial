@@ -2,6 +2,7 @@ package com.ritsu.base.engine.core;
 
 import java.util.ArrayList;
 
+import com.ritsu.base.engine.Components.GameComponent;
 import com.ritsu.base.engine.core.math.Transform;
 import com.ritsu.base.engine.render.lightning.shaders.Shader;
 
@@ -53,6 +54,15 @@ public class GameObject {
 		}
 		for (GameObject child : children) {
 			child.render(shader);
+		}
+	}
+
+	public void addToRenderingEngine(RenderingEngine renderingEngine) {
+		for (GameComponent component : components) {
+			component.addToRenderingEngine(renderingEngine);
+		}
+		for (GameObject child : children) {
+			child.addToRenderingEngine(renderingEngine);
 		}
 	}
 

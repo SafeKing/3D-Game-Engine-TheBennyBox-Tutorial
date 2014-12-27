@@ -1,12 +1,11 @@
-package com.ritsu.base.game;
+package com.ritsu.base.engine.Components;
 
-import com.ritsu.base.engine.core.GameComponent;
 import com.ritsu.base.engine.core.math.Transform;
 import com.ritsu.base.engine.render.Material;
 import com.ritsu.base.engine.render.Mesh;
 import com.ritsu.base.engine.render.lightning.shaders.Shader;
 
-public class MeshRenderer implements GameComponent {
+public class MeshRenderer extends GameComponent {
 
 	private Mesh mesh;
 	private Material material;

@@ -1,5 +1,8 @@
 package com.ritsu.base.game;
 
+import com.ritsu.base.engine.Components.DirectionalLight;
+import com.ritsu.base.engine.Components.MeshRenderer;
+import com.ritsu.base.engine.Components.PointLight;
 import com.ritsu.base.engine.core.Game;
 import com.ritsu.base.engine.core.GameObject;
 import com.ritsu.base.engine.core.math.Vector2f;
@@ -8,6 +11,8 @@ import com.ritsu.base.engine.render.Material;
 import com.ritsu.base.engine.render.Mesh;
 import com.ritsu.base.engine.render.Texture;
 import com.ritsu.base.engine.render.Vertex;
+import com.ritsu.base.engine.render.lightning.Attenuation;
+import com.ritsu.base.engine.render.lightning.BaseLight;
 
 public class TestGame extends Game {
 
@@ -29,7 +34,16 @@ public class TestGame extends Game {
 		planeObject.addComponent(meshRenderer);
 		planeObject.getTransform().setPos(0, -1, 5);
 
+		GameObject directionalLightObject = new GameObject();
+		DirectionalLight directionalLight = new DirectionalLight(new BaseLight(new Vector3f(0, 0, 1), 0.4f), new Vector3f(1, 1, 1));
+		directionalLightObject.addComponent(directionalLight);
+
+		GameObject pointLightObject = new GameObject();
+		directionalLightObject.addComponent(new PointLight(new BaseLight(new Vector3f(0, 1, 0), 4f), new Attenuation(0, 0, 1), new Vector3f(5, 0, 5), 100));
+
 		getRootObject().addChild(planeObject);
+		getRootObject().addChild(directionalLightObject);
+		getRootObject().addChild(pointLightObject);
 
 	}
 }

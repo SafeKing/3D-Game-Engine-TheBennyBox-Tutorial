@@ -1,8 +1,11 @@
-package com.ritsu.base.engine.render.lightning;
+package com.ritsu.base.engine.Components;
 
+import com.ritsu.base.engine.core.RenderingEngine;
 import com.ritsu.base.engine.core.math.Vector3f;
+import com.ritsu.base.engine.render.lightning.Attenuation;
+import com.ritsu.base.engine.render.lightning.BaseLight;
 
-public class PointLight {
+public class PointLight extends GameComponent {
 
 	private BaseLight baseLight;
 	private Attenuation atten;
@@ -14,6 +17,11 @@ public class PointLight {
 		this.atten = atten;
 		this.position = position;
 		this.range = range;
+	}
+
+	@Override
+	public void addToRenderingEngine(RenderingEngine renderingEngine) {
+		renderingEngine.addPointLight(this);
 	}
 
 	public BaseLight getBaseLight() {
