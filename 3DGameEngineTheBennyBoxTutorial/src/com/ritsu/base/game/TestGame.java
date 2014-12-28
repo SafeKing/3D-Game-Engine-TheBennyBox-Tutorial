@@ -1,5 +1,6 @@
 package com.ritsu.base.game;
 
+import com.ritsu.base.engine.components.Camera;
 import com.ritsu.base.engine.components.DirectionalLight;
 import com.ritsu.base.engine.components.MeshRenderer;
 import com.ritsu.base.engine.components.PointLight;
@@ -13,6 +14,7 @@ import com.ritsu.base.engine.render.Material;
 import com.ritsu.base.engine.render.Mesh;
 import com.ritsu.base.engine.render.Texture;
 import com.ritsu.base.engine.render.Vertex;
+import com.ritsu.base.engine.render.window.Window;
 
 public class TestGame extends Game {
 
@@ -53,6 +55,8 @@ public class TestGame extends Game {
 		getRootObject().addChild(directionalLightObject);
 		getRootObject().addChild(pointLightObject);
 		getRootObject().addChild(spotLightObject);
+
+		getRootObject().addChild(new GameObject().addComponent(new Camera((float) Math.toRadians(70.0f), (float) Window.getWidth() / (float) Window.getHeight(), 0.01f, 1000.0f)));
 
 	}
 }

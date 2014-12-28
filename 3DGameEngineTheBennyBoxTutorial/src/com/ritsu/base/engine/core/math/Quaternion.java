@@ -35,7 +35,7 @@ public class Quaternion {
 		return (float) Math.sqrt(x * x + y * y + z * z + w * w);
 	}
 
-	public Quaternion normalize() {
+	public Quaternion normalized() {
 		float length = length();
 
 		return new Quaternion(x / length, y / length, z / length, w / length);
