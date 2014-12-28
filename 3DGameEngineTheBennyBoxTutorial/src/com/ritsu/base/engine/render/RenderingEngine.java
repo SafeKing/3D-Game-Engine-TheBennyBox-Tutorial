@@ -9,9 +9,6 @@ import com.ritsu.base.engine.components.BaseLight;
 import com.ritsu.base.engine.core.GameObject;
 import com.ritsu.base.engine.core.math.Vector3f;
 import com.ritsu.base.engine.render.lightning.ForwardAmbient;
-import com.ritsu.base.engine.render.lightning.ForwardDirectional;
-import com.ritsu.base.engine.render.lightning.ForwardPoint;
-import com.ritsu.base.engine.render.lightning.ForwardSpot;
 import com.ritsu.base.engine.render.lightning.shaders.Shader;
 import com.ritsu.base.engine.render.window.Window;
 

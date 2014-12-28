@@ -6,11 +6,10 @@ import com.ritsu.base.engine.render.lightning.ForwardSpot;
 public class SpotLight extends PointLight {
 
 	private Vector3f direction;
-	private float constant, linear, exponent;
 	private float cutoff;
 
-	public SpotLight(Vector3f color, float intensity, float constant, float linear, float exponent, Vector3f position, float range, Vector3f direction, float cutoff) {
-		super(color, intensity, constant, linear, exponent, position, range);
+	public SpotLight(Vector3f color, float intensity, Vector3f attenuation, Vector3f direction, float cutoff) {
+		super(color, intensity, attenuation);
 		this.direction = direction.normalized();
 		this.cutoff = cutoff;
 
