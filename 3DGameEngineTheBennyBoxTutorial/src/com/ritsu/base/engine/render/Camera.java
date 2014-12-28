@@ -58,8 +58,8 @@ public class Camera {
 			boolean rotY = deltaPos.getX() != 0;
 			boolean rotX = deltaPos.getY() != 0;
 
-			if (rotY) rotateY(deltaPos.getX() * sensitivity);
-			if (rotX) rotateX(-deltaPos.getY() * sensitivity);
+			if (rotY) rotateY((float) Math.toRadians(deltaPos.getX() * sensitivity));
+			if (rotX) rotateX((float) Math.toRadians(-deltaPos.getY() * sensitivity));
 
 			if (rotY || rotX) Input.setMousePosition(new Vector2f(Window.getWidth() / 2, Window.getHeight() / 2));
 		}
