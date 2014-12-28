@@ -2,6 +2,7 @@ package com.ritsu.base.engine.core;
 
 import com.ritsu.base.engine.core.input.Input;
 import com.ritsu.base.engine.core.math.Time;
+import com.ritsu.base.engine.render.RenderingEngine;
 import com.ritsu.base.engine.render.window.Window;
 
 public class CoreEngine {

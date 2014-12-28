@@ -2,8 +2,9 @@ package com.ritsu.base.engine.core;
 
 import java.util.ArrayList;
 
-import com.ritsu.base.engine.Components.GameComponent;
+import com.ritsu.base.engine.components.GameComponent;
 import com.ritsu.base.engine.core.math.Transform;
+import com.ritsu.base.engine.render.RenderingEngine;
 import com.ritsu.base.engine.render.lightning.shaders.Shader;
 
 public class GameObject {

@@ -1,23 +1,21 @@
-package com.ritsu.base.engine.Components;
+package com.ritsu.base.engine.components;
 
-import com.ritsu.base.engine.core.RenderingEngine;
 import com.ritsu.base.engine.core.math.Vector3f;
-import com.ritsu.base.engine.render.lightning.BaseLight;
+import com.ritsu.base.engine.render.lightning.ForwardDirectional;
 
-public class DirectionalLight extends GameComponent {
+public class DirectionalLight extends BaseLight {
 
 	private BaseLight base;
 	private Vector3f direction;
 
-	public DirectionalLight(BaseLight base, Vector3f direction) {
-		this.base = base;
+	public DirectionalLight(Vector3f color, float intensity, Vector3f direction) {
+		super(color, intensity);
 		this.direction = direction.normalized();
+
+		setShader(ForwardDirectional.getInstance());
 	}
 
-	@Override
-	public void addToRenderingEngine(RenderingEngine renderingEngine) {
-		renderingEngine.addDirectionalLight(this);
-	}
+	
 
 	public BaseLight getBase() {
 		return base;

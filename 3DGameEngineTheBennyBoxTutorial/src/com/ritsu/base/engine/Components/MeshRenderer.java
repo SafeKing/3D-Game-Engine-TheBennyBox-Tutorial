@@ -1,4 +1,4 @@
-package com.ritsu.base.engine.Components;
+package com.ritsu.base.engine.components;
 
 import com.ritsu.base.engine.core.math.Transform;
 import com.ritsu.base.engine.render.Material;

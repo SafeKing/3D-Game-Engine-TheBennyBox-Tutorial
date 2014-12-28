@@ -136,4 +136,4 @@ void main(){
 	}
 
 	fragColor = color * totalLight;
- }
+}

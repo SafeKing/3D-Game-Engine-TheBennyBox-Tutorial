@@ -1,27 +1,24 @@
-package com.ritsu.base.engine.Components;
+package com.ritsu.base.engine.components;
 
-import com.ritsu.base.engine.core.RenderingEngine;
 import com.ritsu.base.engine.core.math.Vector3f;
-import com.ritsu.base.engine.render.lightning.Attenuation;
-import com.ritsu.base.engine.render.lightning.BaseLight;
+import com.ritsu.base.engine.render.lightning.ForwardPoint;
 
-public class PointLight extends GameComponent {
+public class PointLight extends BaseLight {
 
 	private BaseLight baseLight;
-	private Attenuation atten;
 	private Vector3f position;
+	private float constant, linear, exponent;
 	private float range;
 
-	public PointLight(BaseLight baseLight, Attenuation atten, Vector3f position, float range) {
-		this.baseLight = baseLight;
-		this.atten = atten;
+	public PointLight(Vector3f color, float intensity, float constant, float linear, float exponent, Vector3f position, float range) {
+		super(color, intensity);
+		this.constant = constant;
+		this.linear = linear;
+		this.exponent = exponent;
 		this.position = position;
 		this.range = range;
-	}
 
-	@Override
-	public void addToRenderingEngine(RenderingEngine renderingEngine) {
-		renderingEngine.addPointLight(this);
+		setShader(ForwardPoint.getInstance());
 	}
 
 	public BaseLight getBaseLight() {
@@ -30,14 +27,6 @@ public class PointLight extends GameComponent {
 
 	public void setBaseLight(BaseLight baseLight) {
 		this.baseLight = baseLight;
-	}
-
-	public Attenuation getAtten() {
-		return atten;
-	}
-
-	public void setAtten(Attenuation atten) {
-		this.atten = atten;
 	}
 
 	public Vector3f getPosition() {
@@ -54,6 +43,30 @@ public class PointLight extends GameComponent {
 
 	public void setRange(float range) {
 		this.range = range;
+	}
+
+	public float getConstant() {
+		return constant;
+	}
+
+	public void setConstant(float constant) {
+		this.constant = constant;
+	}
+
+	public float getLinear() {
+		return linear;
+	}
+
+	public void setLinear(float linear) {
+		this.linear = linear;
+	}
+
+	public float getExponent() {
+		return exponent;
+	}
+
+	public void setExponent(float exponent) {
+		this.exponent = exponent;
 	}
 
 }

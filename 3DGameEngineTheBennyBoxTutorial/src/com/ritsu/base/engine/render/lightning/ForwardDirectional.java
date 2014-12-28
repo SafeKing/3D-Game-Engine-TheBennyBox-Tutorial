@@ -1,6 +1,7 @@
 package com.ritsu.base.engine.render.lightning;
 
-import com.ritsu.base.engine.Components.DirectionalLight;
+import com.ritsu.base.engine.components.BaseLight;
+import com.ritsu.base.engine.components.DirectionalLight;
 import com.ritsu.base.engine.core.math.Matrix4f;
 import com.ritsu.base.engine.core.math.Transform;
 import com.ritsu.base.engine.render.Material;
@@ -50,16 +51,16 @@ public class ForwardDirectional extends Shader {
 		setUniformf("specularPower", material.getSpecularPower());
 
 		setUniform("eyePos", getRenderingEngine().getMainCamera().getPos());
-		setUniform("directionalLight", getRenderingEngine().getDirectionalLight());
+		setUniformDirectionalLight("directionalLight", (DirectionalLight) getRenderingEngine().getActiveLight());
 	}
 
-	public void setUniform(String uniformName, BaseLight baseLight) {
+	public void setUniformBaseLight(String uniformName, BaseLight baseLight) {
 		setUniform(uniformName + ".color", baseLight.getColor());
 		setUniformf(uniformName + ".intensity", baseLight.getIntensity());
 	}
 
-	public void setUniform(String uniformName, DirectionalLight directionalLight) {
-		setUniform(uniformName + ".base", directionalLight.getBase());
+	public void setUniformDirectionalLight(String uniformName, DirectionalLight directionalLight) {
+		setUniformBaseLight(uniformName + ".base", (BaseLight) directionalLight);
 		setUniform(uniformName + ".direction", directionalLight.getDirection());
 	}
 }

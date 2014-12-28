@@ -29,12 +29,12 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.HashMap;
 
-import com.ritsu.base.engine.core.RenderingEngine;
 import com.ritsu.base.engine.core.math.Matrix4f;
 import com.ritsu.base.engine.core.math.Transform;
 import com.ritsu.base.engine.core.math.Vector3f;
 import com.ritsu.base.engine.core.resources.Util;
 import com.ritsu.base.engine.render.Material;
+import com.ritsu.base.engine.render.RenderingEngine;
 
 public class Shader {
 

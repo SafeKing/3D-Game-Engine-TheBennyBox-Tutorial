@@ -1,6 +1,7 @@
 package com.ritsu.base.engine.render.lightning;
 
-import com.ritsu.base.engine.Components.PointLight;
+import com.ritsu.base.engine.components.BaseLight;
+import com.ritsu.base.engine.components.PointLight;
 import com.ritsu.base.engine.core.math.Matrix4f;
 import com.ritsu.base.engine.core.math.Transform;
 import com.ritsu.base.engine.render.Material;
@@ -54,19 +55,19 @@ public class ForwardPoint extends Shader {
 		setUniformf("specularPower", material.getSpecularPower());
 
 		setUniform("eyePos", getRenderingEngine().getMainCamera().getPos());
-		setUniform("pointLight", getRenderingEngine().getPointLight());
+		setUniformPointLight("pointLight", (PointLight) getRenderingEngine().getActiveLight());
 	}
 
-	public void setUniform(String uniformName, BaseLight baseLight) {
+	public void setUniformBaseLight(String uniformName, BaseLight baseLight) {
 		setUniform(uniformName + ".color", baseLight.getColor());
 		setUniformf(uniformName + ".intensity", baseLight.getIntensity());
 	}
 
-	public void setUniform(String uniformName, PointLight pointLight) {
-		setUniform(uniformName + ".base", pointLight.getBaseLight());
-		setUniformf(uniformName + ".atten.constant", pointLight.getAtten().getConstant());
-		setUniformf(uniformName + ".atten.linear", pointLight.getAtten().getLinear());
-		setUniformf(uniformName + ".atten.exponent", pointLight.getAtten().getExponent());
+	public void setUniformPointLight(String uniformName, PointLight pointLight) {
+		setUniformBaseLight(uniformName + ".base", pointLight);
+		setUniformf(uniformName + ".atten.constant", pointLight.getConstant());
+		setUniformf(uniformName + ".atten.linear", pointLight.getLinear());
+		setUniformf(uniformName + ".atten.exponent", pointLight.getExponent());
 		setUniform(uniformName + ".position", pointLight.getPosition());
 		setUniformf(uniformName + ".range", pointLight.getRange());
 	}
