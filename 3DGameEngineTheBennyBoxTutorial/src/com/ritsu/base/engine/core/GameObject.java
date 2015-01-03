@@ -21,6 +21,7 @@ public class GameObject {
 
 	public void addChild(GameObject child) {
 		children.add(child);
+		child.getTransform().setParent(transform);
 	}
 
 	public GameObject addComponent(GameComponent component) {

@@ -1,5 +1,5 @@
 3D Game Engine Tutorial from TheBennyBox
-=====
+========================================
 
 A 3D game engine tutorial using Slick-Utils and OpenGL (using LWJGL).
 
